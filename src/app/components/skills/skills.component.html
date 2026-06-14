@@ -1,0 +1,97 @@
+<!--
+  @for con track — Angular necesita una forma de identificar cada elemento
+  en la lista para optimizar los re-renders. Usamos la propiedad 'key' del objeto.
+
+  @if (cat.iconType === 'backend') { ... }
+  Para cada categoría seleccionamos el ícono SVG correspondiente.
+  Esto es más verboso que usar emojis, pero los íconos SVG escalan perfectamente,
+  se pueden estilizar con CSS y son más profesionales.
+-->
+<section id="skills" class="section" appRevealOnScroll>
+  <div class="container">
+    <h2 class="section-title">{{ tr.t('skills.sectionTitle') }}</h2>
+
+    <div class="skills-grid">
+      @for (cat of categories; track cat.key) {
+        <div class="skill-category card">
+          <div class="cat-header">
+            <span class="cat-icon-wrap">
+              <!-- Backend: ícono de servidor/engranaje -->
+              @if (cat.iconType === 'backend') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                  <line x1="6" y1="6" x2="6.01" y2="6"/>
+                  <line x1="6" y1="18" x2="6.01" y2="18"/>
+                </svg>
+              }
+              <!-- Database: ícono de cilindro -->
+              @if (cat.iconType === 'database') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              }
+              <!-- Architecture: ícono de capas -->
+              @if (cat.iconType === 'architecture') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+              }
+              <!-- DevOps: ícono de herramienta -->
+              @if (cat.iconType === 'devops') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              }
+              <!-- Frontend: ícono de monitor -->
+              @if (cat.iconType === 'frontend') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              }
+              <!-- Languages: ícono de idioma -->
+              @if (cat.iconType === 'languages') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m5 8 6 6"/>
+                  <path d="m4 14 6-6 2-3"/>
+                  <path d="M2 5h12"/>
+                  <path d="M7 2h1"/>
+                  <path d="m22 22-5-10-5 10"/>
+                  <path d="M14 18h6"/>
+                </svg>
+              }
+              <!-- Soft skills: ícono de personas -->
+              @if (cat.iconType === 'soft') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              }
+            </span>
+            <h3 class="cat-title">{{ tr.t(cat.key) }}</h3>
+          </div>
+          <div class="chips-container">
+            @for (item of cat.items; track item) {
+              <span class="chip">{{ item }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<!--
+  PLANTILLA DEL APP COMPONENT — Layout principal
+  ══════════════════════════════════════════════════════════════════
+  Cada tag aquí corresponde a un componente Angular.
+  Angular busca el selector (<app-header>, <app-hero>, etc.)
+  y renderiza el componente correspondiente en ese lugar.
+
+  Esto es como el <include> de Thymeleaf, pero más potente.
+  ══════════════════════════════════════════════════════════════════
+-->
+
+<!--
+  app-scroll-ui se coloca ANTES del header para que la barra de
+  progreso (z-index: 9999) quede visualmente encima de todo.
+  El botón volver arriba flota independiente con position:fixed.
+-->
+<app-scroll-ui />
+
+<!-- Header fijo en la parte superior -->
+<app-header />
+
+<!-- Contenido principal -->
+<main>
+  <app-hero />
+  <app-about />
+  <app-experience />
+  <app-education />
+  <app-skills />
+  <app-projects />
+  <app-contact />
+</main>
+
+<!-- Pie de página -->
+<app-footer />

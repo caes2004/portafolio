@@ -1,0 +1,135 @@
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Proyecto destacado: borde verde y línea superior */
+.project-card.featured {
+  border-color: var(--verde-principal);
+  border-width: 2px;
+}
+
+.project-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--verde-principal), var(--verde-medio));
+}
+
+/* Proyecto en curso: borde naranja/ámbar sutil */
+.project-card.in-progress {
+  border-color: #d97706;
+  border-width: 2px;
+}
+
+.project-card.in-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+/* Contenedor de badges */
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Badge base */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radio-xl);
+  width: fit-content;
+  border: 1px solid;
+}
+
+/* Badge destacado (verde) */
+.badge-featured {
+  color: var(--verde-principal);
+  background: var(--verde-claro);
+  border-color: var(--borde);
+}
+
+/* Badge en curso (ámbar) */
+.badge-progress {
+  color: #92400e;
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+
+/* Modo oscuro para badge en curso */
+[data-theme="dark"] .badge-progress {
+  color: #fcd34d;
+  background: #292007;
+  border-color: #78450a;
+}
+
+.project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto-primario);
+}
+
+.project-desc {
+  font-size: 0.92rem;
+  color: var(--texto-secundario);
+  line-height: 1.7;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+}
+
+.private-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--texto-claro);
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-xl);
+}

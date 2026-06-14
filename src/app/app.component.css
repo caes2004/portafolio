@@ -1,0 +1,4 @@
+/* Asegura que el main tenga suficiente padding superior para no quedar detrás del header fijo */
+main {
+  padding-top: 64px;
+}

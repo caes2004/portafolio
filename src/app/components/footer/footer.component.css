@@ -1,0 +1,20 @@
+footer {
+  background: var(--bg-secundario);
+  border-top: 1px solid var(--borde);
+  padding: 2rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-copy,
+.footer-made {
+  font-size: 0.85rem;
+  color: var(--texto-claro);
+  margin: 0;
+}

@@ -1,0 +1,301 @@
+/*
+ * ESTILOS GLOBALES
+ * ════════════════════════════════════════════════════════════════════
+ * Este archivo se aplica a TODA la página.
+ * Es el único lugar donde definimos variables CSS y animaciones globales.
+ *
+ * ¿QUÉ SON LAS VARIABLES CSS?
+ * Son valores reutilizables que defines una vez y usas en todo el CSS.
+ * Se declaran con -- y se leen con var().
+ * Ejemplo: color: var(--verde-principal);
+ *
+ * ¿CÓMO FUNCIONA EL MODO OSCURO?
+ * Definimos las mismas variables en [data-theme="light"] y [data-theme="dark"].
+ * Cuando el ThemeService cambia el atributo data-theme del <body>,
+ * el navegador automáticamente usa las variables del tema correspondiente.
+ * ════════════════════════════════════════════════════════════════════
+ */
+
+/* ── Importar fuente Inter desde Google Fonts ───────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Reset básico ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── VARIABLES CSS — Tema Claro (por defecto) ───────────────────── */
+[data-theme="light"], :root {
+  /* Paleta principal */
+  --verde-principal:  #2e7d57;
+  --verde-medio:      #3fa776;
+  --verde-claro:      #e8f5ee;
+  --verde-muy-claro:  #f0faf4;
+  --verde-acento:     #1a5c3e;
+
+  /* Fondos */
+  --bg-primario:      #ffffff;
+  --bg-secundario:    #f7faf8;
+  --bg-tarjeta:       #ffffff;
+  --bg-chip:          #e8f5ee;
+
+  /* Textos */
+  --texto-primario:   #1a2420;
+  --texto-secundario: #4a5c54;
+  --texto-claro:      #6b7c74;
+  --texto-invertido:  #ffffff;
+
+  /* Bordes y sombras */
+  --borde:            #d4e8dc;
+  --sombra-suave:     0 2px 12px rgba(46, 125, 87, 0.08);
+  --sombra-media:     0 4px 24px rgba(46, 125, 87, 0.12);
+  --sombra-fuerte:    0 8px 40px rgba(46, 125, 87, 0.18);
+
+  /* Transiciones */
+  --transicion:       0.3s ease;
+  --transicion-lenta: 0.5s ease;
+
+  /* Bordes redondeados */
+  --radio-sm:  6px;
+  --radio-md:  12px;
+  --radio-lg:  20px;
+  --radio-xl:  30px;
+
+  /* Header */
+  --bg-header:        rgba(255, 255, 255, 0.92);
+  --borde-header:     rgba(46, 125, 87, 0.12);
+}
+
+/* ── VARIABLES CSS — Tema Oscuro ────────────────────────────────── */
+[data-theme="dark"] {
+  --verde-principal:  #4cbb85;
+  --verde-medio:      #5dd49a;
+  --verde-claro:      #1a2e23;
+  --verde-muy-claro:  #152019;
+  --verde-acento:     #7de0ae;
+
+  --bg-primario:      #0f1713;
+  --bg-secundario:    #141f19;
+  --bg-tarjeta:       #1a2920;
+  --bg-chip:          #1e3328;
+
+  --texto-primario:   #e8f0eb;
+  --texto-secundario: #9ab8a4;
+  --texto-claro:      #6e8e79;
+  --texto-invertido:  #0f1713;
+
+  --borde:            #2a4035;
+  --sombra-suave:     0 2px 12px rgba(0, 0, 0, 0.3);
+  --sombra-media:     0 4px 24px rgba(0, 0, 0, 0.4);
+  --sombra-fuerte:    0 8px 40px rgba(0, 0, 0, 0.5);
+
+  --bg-header:        rgba(15, 23, 19, 0.95);
+  --borde-header:     rgba(76, 187, 133, 0.15);
+}
+
+/* ── Estilos base del documento ─────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primario);
+  color: var(--texto-primario);
+  line-height: 1.6;
+  transition: background-color var(--transicion), color var(--transicion);
+  overflow-x: hidden;
+}
+
+/* ── Tipografía ─────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--texto-primario);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+p { color: var(--texto-secundario); }
+
+a {
+  color: var(--verde-principal);
+  text-decoration: none;
+  transition: color var(--transicion);
+}
+a:hover { color: var(--verde-medio); }
+
+/* ── Clases utilitarias ─────────────────────────────────────────── */
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--texto-primario);
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--verde-principal), var(--verde-medio));
+  border-radius: 2px;
+}
+
+.card {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-md);
+  padding: 2rem;
+  box-shadow: var(--sombra-suave);
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+.card:hover {
+  box-shadow: var(--sombra-media);
+  transform: translateY(-2px);
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section:nth-child(even) {
+  background-color: var(--bg-secundario);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--verde-principal);
+  color: var(--texto-invertido);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radio-xl);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--verde-acento);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+  color: var(--texto-invertido);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--verde-principal);
+  padding: 0.72rem 1.7rem;
+  border-radius: var(--radio-xl);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 2px solid var(--verde-principal);
+  cursor: pointer;
+  transition: all var(--transicion);
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--verde-principal);
+  color: var(--texto-invertido);
+  transform: translateY(-2px);
+}
+
+.chip {
+  display: inline-block;
+  background: var(--bg-chip);
+  color: var(--verde-principal);
+  border: 1px solid var(--borde);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radio-xl);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background var(--transicion), color var(--transicion);
+}
+
+.chip:hover {
+  background: var(--verde-principal);
+  color: var(--texto-invertido);
+  border-color: var(--verde-principal);
+}
+
+/* ── ANIMACIONES ────────────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.2); }
+}
+
+.anim-fade-up          { animation: fadeInUp 0.7s ease both; }
+.anim-fade-up.delay-1  { animation-delay: 0.15s; }
+.anim-fade-up.delay-2  { animation-delay: 0.30s; }
+.anim-fade-up.delay-3  { animation-delay: 0.45s; }
+.anim-fade-up.delay-4  { animation-delay: 0.60s; }
+.anim-fade-up.delay-5  { animation-delay: 0.75s; }
+
+/* ── Animación de scroll (directiva RevealOnScroll) ─────────────── */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Scrollbar personalizado ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secundario); }
+::-webkit-scrollbar-thumb { background: var(--verde-principal); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--verde-medio); }
+
+/* ── Selección de texto ─────────────────────────────────────────── */
+::selection { background: var(--verde-claro); color: var(--verde-acento); }
+
+/* ── Foco accesible ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--verde-principal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

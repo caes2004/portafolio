@@ -1,0 +1,104 @@
+/*
+ * SCROLL UI — Estilos de la barra de progreso y el botón volver arriba
+ * ─────────────────────────────────────────────────────────────────────
+ * Usa variables CSS de la paleta (styles.css) → respeta modo claro/oscuro
+ * automáticamente sin necesidad de reglas extra en la mayoría de casos.
+ * ─────────────────────────────────────────────────────────────────────
+ */
+
+/* ══ Barra de progreso ════════════════════════════════════════════════ */
+
+/*
+ * position: fixed — la barra queda pegada en la parte superior de la
+ * VENTANA (no del documento). Aunque el usuario haga scroll, siempre
+ * está visible arriba.
+ * z-index: 9999 — encima de absolutamente todo (header incluido).
+ */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;   /* el rail es invisible */
+  z-index: 9999;
+}
+
+/*
+ * Relleno del progreso.
+ * Su ancho lo controla Angular con [style.width.%]="progress()".
+ * transition: width 0.1s linear → suaviza la actualización frame a frame.
+ */
+.scroll-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--verde-principal), var(--verde-medio));
+  transition: width 0.1s linear;
+}
+
+/* ══ Botón volver arriba ══════════════════════════════════════════════ */
+
+/*
+ * position: fixed; bottom/right → el botón flota en la esquina inferior
+ * derecha de la ventana sin importar el scroll.
+ * El botón aparece con fadeInUp (keyframe definido en styles.css).
+ */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--verde-principal);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-media);
+  transition:
+    background    var(--transicion),
+    transform     var(--transicion),
+    box-shadow    var(--transicion);
+  z-index: 9998;
+
+  /* Animación de entrada: aparece subiendo desde abajo */
+  animation: fadeInUp 0.35s ease;
+}
+
+.back-to-top:hover {
+  background: var(--verde-acento);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.back-to-top:active {
+  transform: translateY(0);
+}
+
+/* Sombra más verde en modo oscuro para mayor contraste */
+[data-theme="dark"] .back-to-top {
+  box-shadow: 0 4px 24px rgba(46, 125, 87, 0.40);
+}
+
+/* ══ Responsive ════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ══ Reduce motion — sin animaciones si el usuario lo prefiere ════════ */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-fill {
+    transition: none;
+  }
+  .back-to-top {
+    animation: none;
+    transition: background var(--transicion);  /* solo el color, sin movimiento */
+  }
+}

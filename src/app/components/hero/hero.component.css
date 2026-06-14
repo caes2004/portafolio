@@ -1,0 +1,244 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 0 4rem;
+  background: linear-gradient(135deg, var(--bg-primario) 0%, var(--verde-muy-claro) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+ * EFECTO AURORA — capas de gradientes radiales animadas
+ * ─────────────────────────────────────────────────────────────────
+ * ::before y ::after son pseudo-elementos: nodos virtuales creados
+ * por el navegador sin que aparezcan en el HTML. Los usamos como
+ * capas decorativas absolutas detrás del contenido real.
+ *
+ * Apilamos varios radial-gradient() en un mismo 'background' para
+ * crear manchas de luz difuminadas. La animación @keyframes las mueve
+ * ligeramente para simular un movimiento vivo y orgánico (aurora).
+ *
+ * z-index: 0 → las capas quedan DETRÁS del contenido (z-index: 1).
+ * pointer-events: none → no bloquean clics.
+ * ─────────────────────────────────────────────────────────────────
+ */
+
+/* Capa principal de aurora — tres manchas verdes difuminadas */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;           /* shorthand de top:0; right:0; bottom:0; left:0 */
+  background:
+    radial-gradient(ellipse 700px 500px at 82% 8%,  rgba(46, 125, 87, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 480px 400px at 5%  88%, rgba(63, 167, 118, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 380px 300px at 52% 52%, rgba(232, 245, 238, 0.28) 0%, transparent 70%);
+  animation: aurora-drift 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Capa secundaria — manchas adicionales con fase invertida para más profundidad */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 520px 380px at 28% 18%, rgba(46, 125, 87, 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 320px 280px at 92% 72%, rgba(63, 167, 118, 0.08) 0%, transparent 70%);
+  animation: aurora-drift 26s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+ * @keyframes aurora-drift — define los fotogramas clave de la animación.
+ * translate() mueve la capa ligeramente; scale() la expande/contrae.
+ * Los valores pequeños (20-25px, 1.06) dan un movimiento sutil, no mareador.
+ */
+@keyframes aurora-drift {
+  0%, 100% { transform: scale(1)    translate(0px,    0px);  opacity: 1;    }
+  33%       { transform: scale(1.06) translate(-22px,  16px); opacity: 0.88; }
+  66%       { transform: scale(0.96) translate( 18px, -10px); opacity: 0.96; }
+}
+
+/* En modo oscuro la aurora debe ser más tenue para no restar legibilidad */
+[data-theme="dark"] .hero-section::before { opacity: 0.55; }
+[data-theme="dark"] .hero-section::after  { opacity: 0.45; }
+
+/* Respetar la preferencia del sistema operativo de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::before,
+  .hero-section::after { animation: none; }
+}
+
+/*
+ * position: relative + z-index: 1 garantizan que el contenido
+ * siempre quede ENCIMA de las capas de aurora (::before/::after con z-index: 0).
+ * Sin esto, los pseudo-elementos podrían tapar el texto en algunos navegadores.
+ */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Columna de texto ── */
+.hero-text {
+  flex: 1;
+  max-width: 580px;
+}
+
+.hero-greeting {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--verde-principal);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.hero-name {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--texto-primario);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--verde-principal);
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--texto-secundario);
+  margin-bottom: 0.5rem;
+}
+
+.hero-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--texto-claro);
+  margin-bottom: 2rem;
+}
+
+.hero-location svg {
+  color: var(--verde-principal);
+  flex-shrink: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ── Foto ── */
+.hero-photo-wrapper {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hero-photo-ring {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, var(--verde-principal), var(--verde-medio));
+  box-shadow: var(--sombra-fuerte);
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 4px solid var(--bg-primario);
+}
+
+/* Badge de disponibilidad */
+.availability-badge {
+  position: absolute;
+  bottom: 12px;
+  right: -12px;
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-xl);
+  padding: 0.4rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--texto-primario);
+  box-shadow: var(--sombra-media);
+  white-space: nowrap;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+/* Flecha de scroll — position relative para quedar sobre la aurora (z-index: 0) */
+.scroll-hint {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  color: var(--texto-claro);
+  animation: fadeInUp 0.7s ease 1s both, scrollBounce 2s ease 2s infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-inner {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-photo-ring {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-location {
+    justify-content: center;
+  }
+
+  .availability-badge {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: -20px;
+  }
+}

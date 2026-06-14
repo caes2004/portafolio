@@ -1,0 +1,52 @@
+<!--
+  appRevealOnScroll — directiva personalizada que anima la sección al hacer scroll.
+  Se aplica simplemente añadiendo el atributo al elemento HTML.
+-->
+<section id="about" class="section" appRevealOnScroll>
+  <div class="container">
+    <h2 class="section-title">{{ tr.t('about.sectionTitle') }}</h2>
+
+    <div class="about-grid">
+      <!-- Texto de resumen -->
+      <div class="about-text">
+        <!--
+          [innerHTML] — binding de propiedad: asigna el valor al atributo innerHTML del elemento.
+          Aquí reemplazamos los saltos de línea \n del texto por <br> para que se vean en HTML.
+          El pipe | es la forma de Angular de transformar valores (como los Stream.map() de Java).
+        -->
+        <p class="about-body">{{ tr.t('about.body') }}</p>
+      </div>
+
+      <!-- Tarjetas de datos rápidos -->
+      <div class="about-cards">
+        <div class="stat-card">
+          <span class="stat-number">1+</span>
+          <span class="stat-label">{{ tr.lang() === 'es' ? 'Año de experiencia' : 'Year of experience' }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">5°</span>
+          <span class="stat-label">{{ tr.lang() === 'es' ? 'Semestre en curso' : 'Current semester' }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">B1</span>
+          <span class="stat-label">{{ tr.lang() === 'es' ? 'Nivel de inglés' : 'English level' }}</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
+              <line x1="13" y1="19" x2="19" y2="13"/>
+              <line x1="16" y1="16" x2="20" y2="20"/>
+              <line x1="19" y1="21" x2="21" y2="19"/>
+              <polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/>
+              <line x1="5" y1="14" x2="8.5" y2="17.5"/>
+              <line x1="6" y1="20" x2="10" y2="16"/>
+            </svg>
+          </span>
+          <span class="stat-label">{{ tr.lang() === 'es' ? 'Mejor proyecto backend 4° y 5° semestre' : 'Best backend project 4th & 5th semester' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

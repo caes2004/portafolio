@@ -1,0 +1,76 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-body {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--texto-secundario);
+  white-space: pre-line;
+}
+
+/* Tarjetas de estadísticas */
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+  box-shadow: var(--sombra-suave);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-media);
+}
+
+.stat-card.highlight {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  text-align: left;
+  border-color: var(--verde-principal);
+  background: var(--verde-claro);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--verde-principal);
+  line-height: 1;
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde-principal);
+  flex-shrink: 0;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--texto-secundario);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

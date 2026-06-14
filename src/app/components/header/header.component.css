@@ -1,0 +1,172 @@
+/* Estilos encapsulados del Header — solo afectan a este componente */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--bg-header);
+  border-bottom: 1px solid transparent;
+  transition: background var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Cuando el usuario hace scroll, el header gana sombra y borde */
+header.scrolled {
+  border-bottom-color: var(--borde-header);
+  box-shadow: var(--sombra-suave);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--verde-principal);
+}
+
+.logo-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--texto-primario);
+  transition: color var(--transicion);
+}
+
+/* Nav desktop */
+.nav-desktop {
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-desktop a {
+  color: var(--texto-secundario);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radio-sm);
+  cursor: pointer;
+  transition: color var(--transicion), background var(--transicion);
+}
+
+.nav-desktop a:hover {
+  color: var(--verde-principal);
+  background: var(--verde-claro);
+}
+
+/* Controles */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-lang,
+.btn-theme {
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+  color: var(--texto-secundario);
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background var(--transicion), color var(--transicion), border-color var(--transicion);
+}
+
+.btn-lang:hover,
+.btn-theme:hover {
+  background: var(--verde-claro);
+  color: var(--verde-principal);
+  border-color: var(--verde-principal);
+}
+
+.btn-cv {
+  font-size: 0.85rem;
+  padding: 0.55rem 1.2rem;
+}
+
+/* Hamburguesa — solo en mobile */
+.btn-menu {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  padding: 0.4rem;
+  cursor: pointer;
+  color: var(--texto-primario);
+  transition: background var(--transicion);
+}
+
+.btn-menu:hover {
+  background: var(--verde-claro);
+}
+
+/* Menú mobile */
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--borde);
+  gap: 0.25rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.nav-mobile a {
+  color: var(--texto-secundario);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radio-sm);
+  cursor: pointer;
+  transition: color var(--transicion), background var(--transicion);
+}
+
+.nav-mobile a:hover {
+  color: var(--verde-principal);
+  background: var(--verde-claro);
+}
+
+.nav-mobile .btn-primary {
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-desktop,
+  .btn-cv {
+    display: none;
+  }
+
+  .btn-menu {
+    display: flex;
+  }
+}
