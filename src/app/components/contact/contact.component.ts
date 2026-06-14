@@ -23,8 +23,8 @@ export class ContactComponent {
     {
       icon: 'linkedin',
       label: 'contact.linkedin',
-      value: 'linkedin.com/in/esteban-cano-estrada',
-      href: 'https://www.linkedin.com/in/esteban-cano-estrada',
+      value: 'linkedin.com/in/esteban-cano-estrada-8511b0301',
+      href: 'https://www.linkedin.com/in/esteban-cano-estrada-8511b0301/',
     },
     {
       icon: 'github',
